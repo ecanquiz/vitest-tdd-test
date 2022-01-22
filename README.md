@@ -13,8 +13,27 @@ npm init vite@latest
 
 npm install -D vitest
 
-npm install -D jsdom
-
 npm install -D @vue/test-utils@next
 
 npm install -D @testing-library/vue@next
+
+```
+/// <reference types="vitest" />
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    }
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
+})
+```
