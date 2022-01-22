@@ -16,3 +16,5 @@ npm install -D vitest
 npm install -D jsdom
 
 npm install -D @vue/test-utils@next
+
+npm install -D @testing-library/vue@next
