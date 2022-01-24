@@ -1,16 +1,16 @@
-test('exploring a mock property', () => {
-    const myMock = vi.fn();
+test.only('exploring a mock property', () => {
+  const myMock = vi.fn();
 
-    const a = new myMock();
-    const b = {};
-    const bound = myMock.bind(b);
-    bound();
+  const a = new myMock();
+  const b = {};
+  const bound = myMock.bind(b);
+  bound();
 
-    console.log(myMock.mock.instances);
-    // > [ <a>, <b> ]
+  expect(JSON.stringify(myMock.mock.instances)).toBe(JSON.stringify([{},{}]));
+  // > [ <a>, <b> ]
 });
 
-test('exploring mock properties', () => {
+test('more exploring mock properties', () => {
     const myMock = vi.fn();    
     
     const a = new myMock('first arg', 'second arg');
@@ -25,7 +25,7 @@ test('exploring mock properties', () => {
     expect(myMock.mock.calls[0][1]).toBe('second arg');
     
     // This function was instantiated exactly once
-    expect(myMock.mock.instances.length).toBe(1);
+    expect(myMock.mock.instances.length).toBe(2);
 });
 
 test('mock return value', () => {
