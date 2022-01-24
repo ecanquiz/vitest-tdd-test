@@ -9,6 +9,7 @@
     "coverage": "vitest --coverage"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
