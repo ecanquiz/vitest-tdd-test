@@ -1,4 +1,4 @@
-import fetchData from '@/js/callback/fetchData';
+import fetchData from '@/js/jest/callback/fetchData';
 
 test('the data is peanut butter', async done => {
   function callback(data) {

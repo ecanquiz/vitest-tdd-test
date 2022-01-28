@@ -1,4 +1,4 @@
-import foo from '@/js/foo';
+import foo from '@/js/jest/foo';
 
 test('mock simulation implementations', () => {
   const myMockFn = vi.fn(cb => cb(null, true));  
@@ -7,7 +7,7 @@ test('mock simulation implementations', () => {
 });
 
 test('foo is a mock function', () => {
-  vi.mock('@/js/foo'); // this happens automatically with automocking    
+  vi.mock('@/js/jest/foo'); // this happens automatically with automocking    
 
   // foo is a mock function
   foo.mockImplementation(() => 42);    

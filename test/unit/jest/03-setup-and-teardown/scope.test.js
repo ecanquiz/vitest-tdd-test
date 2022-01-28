@@ -1,4 +1,4 @@
-import * as City from '@/js/City';
+import * as City from '@/js/jest/City';
 
 describe('matching cities with each', () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import * as City from '@/js/City';
+import * as City from '@/js/jest/City';
 
 beforeAll(() => {
   City.initializeDatabase();

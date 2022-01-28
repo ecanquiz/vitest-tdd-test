@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Users from '@/js/users';
+import Users from '@/js/jest/users';
 
 //vi.mock('axios');
 

@@ -1,9 +1,9 @@
 //test.js
-import defaultExport, {bar, foo} from '@/js/foo-bar-baz';
+import defaultExport, {bar, foo} from '@/js/jest/foo-bar-baz';
 
-vi.mock('@/js/foo-bar-baz', async () => {
-  //const originalModule = jest.requireActual('../foo-bar-baz');
-  const originalModule = vi.importActual('@/js/foo-bar-baz');
+vi.mock('@/js/jest/foo-bar-baz', async () => {
+  //const originalModule = jest.requireActual('../js/jest/foo-bar-baz');
+  const originalModule = vi.importActual('@/js/jest/foo-bar-baz');
 
   //Mock the default export and named export 'foo'
   

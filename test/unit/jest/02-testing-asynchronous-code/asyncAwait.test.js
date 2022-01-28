@@ -1,4 +1,4 @@
-import fetchData from '@/js/promises/fetchData';
+import fetchData from '@/js/jest/promises/fetchData';
 
 test('the data is peanut butter', async () => {
   const data = await fetchData();
