@@ -40,7 +40,7 @@ export default defineConfig({
 
 When you're writing tests, you often need to check that values meet certain conditions
 
-## [Jest](https://jestjs.io/)
+## Wrapping [Jest](https://jestjs.io/)
 
 - `[expect](https://jestjs.io/docs/expect)` gives you access to a number of "matchers" that let you validate different things
 
