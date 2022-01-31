@@ -75,4 +75,10 @@ When you're writing tests, you often need to check that values meet certain cond
 - `emitted(eventName)` returns an array, where each element represents one event emitted.
 - Arguments are stored in `emitted(eventName)[index]` in an array in the same order they are emitted.
 
+**Form Handling**
+- Use `setValue` to set the value on both DOM inputs and Vue components.
+- Use `trigger` to trigger DOM events, both with and without modifiers.
+- Add extra event data to `trigger` using the second parameter.
+- Assert that the DOM changed and the right events got emitted. Try not to assert data on the Component instance.
+
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)

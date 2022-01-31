@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import Form from '@/components/vtu/Form.vue'
+import FormComponent from '@/components/vtu/FormHandling/WorkingWithVariousFormElements.vue'
 
 test('submits a form', async () => {
-  const wrapper = mount(Form)
+  const wrapper = mount(FormComponent)
 
   await wrapper.find('input[type=email]').setValue('name@mail.com')
   await wrapper.find('textarea').setValue('Lorem ipsum dolor sit amet')
@@ -12,7 +12,7 @@ test('submits a form', async () => {
 })
 
 test('submits the form', async () => {
-  const wrapper = mount(Form)
+  const wrapper = mount(FormComponent)
 
   const email = 'name@mail.com'
   const description = 'Lorem ipsum dolor sit amet'
