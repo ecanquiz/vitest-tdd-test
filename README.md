@@ -73,9 +73,16 @@ When you're writing tests, you often need to check that values meet certain cond
 - Arguments are stored in `emitted(eventName)[index]` in an array in the same order they are emitted.
 
 **Form Handling**
+
 - Use `setValue` to set the value on both DOM inputs and Vue components.
 - Use `trigger` to trigger DOM events, both with and without modifiers.
 - Add extra event data to `trigger` using the second parameter.
 - Assert that the DOM changed and the right events got emitted. Try not to assert data on the Component instance.
+
+**Passing Data to Components**
+- Use the `props` and `data` mounting options to pre-set the state of a component.
+- Use `setProps()` to update a prop during a test.
+- Use the `await` keyword before `setProps()` to ensure the Vue will update the DOM before the test continues.
+- Directly interacting with your component can give you greater coverage. Consider using `setValue` or `trigger` in combination with data to ensure everything works correctly.
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
