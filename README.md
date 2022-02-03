@@ -4,14 +4,15 @@
 
 # Vitest-Tdd-Test
 
+In command line:
+```
 npm init vite@latest
-
 npm install -D vitest
-
 npm install -D @vue/test-utils@next
-
 npm install -D @testing-library/vue@next
+```
 
+vite.config.js
 ```
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
@@ -80,9 +81,55 @@ When you're writing tests, you often need to check that values meet certain cond
 - Assert that the DOM changed and the right events got emitted. Try not to assert data on the Component instance.
 
 **Passing Data to Components**
+
 - Use the `props` and `data` mounting options to pre-set the state of a component.
 - Use `setProps()` to update a prop during a test.
 - Use the `await` keyword before `setProps()` to ensure the Vue will update the DOM before the test continues.
 - Directly interacting with your component can give you greater coverage. Consider using `setValue` or `trigger` in combination with data to ensure everything works correctly.
+
+**Write components that are easy to test**
+
+Following is a list of suggestions to write code that is easier to test, and to write tests that are meaningful and simple to maintain.
+
+The following list provide general guidance and it might come in handy in common scenarios.
+
+Do not test implementation details. Think in terms of inputs and outputs from a user perspective. Roughly, this is everything you should take into account when writing a test for a Vue component:
+
+```
+|--------------|---------------------------------------------------|
+| Inputs	   | Examples                                          |
+|--------------|---------------------------------------------------|
+| Interactions | Clicking, typing... any "human" interaction       |
+| Props	       | The arguments a component receives                |
+| Data streams | Data incoming from API calls, data subscriptions… |
+|--------------|---------------------------------------------------|	
+```
+```
+|--------------|---------------------------------------------------|
+| Outputs	   | Examples                                          |
+|--------------|---------------------------------------------------|
+| DOM elements | Any observable node rendered to the document      |
+| Events	   | Emitted events (using $emit)                      |
+| Side Effects | Such as console.log or API calls                  |
+|--------------|---------------------------------------------------|	
+```
+The rule of thumb is that a test should not break on a refactor, that is, when we change its internal implementation without changing its behavior. If that happens, the test might rely on implementation details.
+
+Libraries such as [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/) are build upon these principles. If you are interested in this approach, make sure you check it out.
+
+Build smaller, simpler components. A general rule of thumb is that if a component does less, then it will be easier to test.
+
+Making smaller components will make them more composable and easier to understand.
+
+Sometimes a component might feature a complex method, perform heavy calculations, or use several dependencies.
+
+The suggestion here is to extract this method and import it to the component. This way, you can test the method in isolation using [Jest](https://jestjs.io/) commands with [Vitest](https://vitest.dev/).
+
+This has the additional benefit of ending up with a component that's easier to understand because complex logic is encapsulated in another file.
+
+Also, if the complex method is hard to set up or slow, you might want to mock it to make the test simpler and faster. Examples on making HTTP requests is a good example – [Axios](https://axios-http.com/) is quite a complex library!
+Write tests before writing the component
+
+You can't write untestable code if you write tests beforehand!
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
