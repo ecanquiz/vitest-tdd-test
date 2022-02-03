@@ -40,7 +40,7 @@ When you're writing tests, you often need to check that values meet certain cond
 
 ## Wrapping [Jest](https://jestjs.io/)
 
-- `[expect](https://jestjs.io/docs/expect)` gives you access to a number of "matchers" that let you validate different things
+- [`expect`](https://jestjs.io/docs/expect) gives you access to a number of "matchers" that let you validate different things
 
 - The tests will complete as soon as be completes, before ever calling the callbacks. There is an alternate form of `test` that fixes this. Instead of putting the test in a function with an empty argument, use a single argument called `done`. This will wait until the `done` callback is called before finishing the test.
 - Often while writing tests you have some setup work that needs to happen before tests run, and you have some finishing work that needs to happen after tests run.
