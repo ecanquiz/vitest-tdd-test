@@ -142,7 +142,7 @@ Do not test implementation details. Think in terms of inputs and outputs from a 
 
 ```
 |--------------|---------------------------------------------------|
-| Inputs	   | Examples                                          |
+| Inputs       | Examples                                          |
 |--------------|---------------------------------------------------|
 | Interactions | Clicking, typing... any "human" interaction       |
 | Props	       | The arguments a component receives                |
@@ -151,10 +151,10 @@ Do not test implementation details. Think in terms of inputs and outputs from a 
 ```
 ```
 |--------------|---------------------------------------------------|
-| Outputs	   | Examples                                          |
+| Outputs      | Examples                                          |
 |--------------|---------------------------------------------------|
 | DOM elements | Any observable node rendered to the document      |
-| Events	   | Emitted events (using $emit)                      |
+| Events       | Emitted events (using $emit)                      |
 | Side Effects | Such as console.log or API calls                  |
 |--------------|---------------------------------------------------|	
 ```
@@ -184,7 +184,7 @@ You can't write untestable code if you write tests beforehand!
 - Use `default` for the default slot, and the correct name for a named slots.
 - scoped slots and the `#` shorthand is also supported.
 
-**Asynchronous Behavior**
+**[Asynchronous Behavior](https://next.vue-test-utils.vuejs.org/guide/advanced/async-suspense.html)**
 
 - Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
 - Use `await nextTick()` to ensure the DOM has updated before the test continues.
