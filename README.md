@@ -77,17 +77,17 @@ When you're writing tests, you often need to check that values meet certain cond
 
 - [`expect`](https://jestjs.io/docs/expect) gives you access to a number of "matchers" that let you validate different things
 
-- The tests will complete as soon as be completes, before ever calling the callbacks. There is an alternate form of `test` that fixes this. Instead of putting the test in a function with an empty argument, use a single argument called `done`. This will wait until the `done` callback is called before finishing the test.
+- The tests will complete as soon as be completes, before ever calling the callbacks. There is an alternate form of [`test`](https://jestjs.io/docs/api#testname-fn-timeout) that fixes this. Instead of putting the test in a function with an empty argument, use a single argument called `done`. This will wait until the `done` callback is called before finishing the test.
 - Often while writing tests you have some setup work that needs to happen before tests run, and you have some finishing work that needs to happen after tests run.
-- If you have some work you need to do repeatedly for many tests, you can use `beforeEach` and `afterEach`.
-- In some cases, you only need to do setup once, at the beginning of a file. This can be especially bothersome when the setup is asynchronous, so you can't do it inline. Use `beforeAll` and `afterAll` to handle this situation.
-- By default, the `beforeAll` and `afterAll` blocks apply to every test in a file. You can also group tests together using a `describe` block. When they are inside a describe block, the `beforeAll` and `afterAll` blocks only apply to the tests within that describe block.
-- If a test is failing, one of the first things to check should be whether the test is failing when it's the only test that runs. To run only one test, temporarily change that `test` command to a `test.only`.
-- In the case where we do need to create a fake (or mocked) version of a function we can use [vi.fn()](https://vitest.dev/api/#vi-fn). We use [Tinyspy](https://github.com/Aslemammad/tinyspy) as a base for mocking functions, but we have our own wrapper to make it [object jest](https://jestjs.io/docs/jest-object) compatible. Both `vi.fn()` and `vi.spyOn()` share the same methods, however only the return result of `vi.fn()` is callable.
+- If you have some work you need to do repeatedly for many tests, you can use [`beforeEach`](https://jestjs.io/docs/api#beforeeachfn-timeout) and [`afterEach`](https://jestjs.io/docs/api#aftereachfn-timeout).
+- In some cases, you only need to do setup once, at the beginning of a file. This can be especially bothersome when the setup is asynchronous, so you can't do it inline. Use [`beforeAll`](https://jestjs.io/docs/api#beforeallfn-timeout) and [`afterAll`](https://jestjs.io/docs/api#afterallfn-timeout) to handle this situation.
+- By default, the `beforeAll` and `afterAll` blocks apply to every test in a file. You can also group tests together using a [`describe`](https://jestjs.io/docs/api#describename-fn) block. When they are inside a describe block, the `beforeAll` and `afterAll` blocks only apply to the tests within that describe block.
+- If a test is failing, one of the first things to check should be whether the test is failing when it's the only test that runs. To run only one test, temporarily change that `test` command to a [`test.only`](https://jestjs.io/docs/api#testonlyname-fn-timeout).
+- In the case where we do need to create a fake (or mocked) version of a function we can use [vi.fn()](https://vitest.dev/api/#vi-fn). We use [Tinyspy](https://github.com/Aslemammad/tinyspy) as a base for mocking functions, but we have our own wrapper to make it [object jest](https://jestjs.io/docs/jest-object) compatible. Both [`vi.fn()`](https://vitest.dev/api/#vi-fn) and [`vi.spyOn()`](https://vitest.dev/api/#vi-spyon) share the same methods, however only the return result of `vi.fn()` is callable.
 
 ## [Vue Test Utils](https://vue-test-utils.vuejs.org/)
 
-**A Crash Course**
+**[A Crash Course](https://next.vue-test-utils.vuejs.org/guide/essentials/a-crash-course.html)**
 
 The test is split into three distinct stages, separated by new lines. The three stages represent the three phases of a test: **arrange**, **act** and **assert**.
 
@@ -99,40 +99,40 @@ In the assert phase, we make assertions about how we expect the current state of
 
 Almost all test will follow these three phases. You don't need to separate them with new lines like this guide does, but it is good to keep these three phases in mind as you write your tests.
 
-- Use `mount()` to render a component.
-- Use `get()` and `findAll()` to query the DOM.
-- `trigger()` and `setValue()` are helpers to simulate user input.
+- Use [`mount()`](https://next.vue-test-utils.vuejs.org/api/#mount) to render a component.
+- Use [`get()`](https://next.vue-test-utils.vuejs.org/api/#get) and [`findAll()`](https://next.vue-test-utils.vuejs.org/api/#findall) to query the DOM.
+- [`trigger()`](https://next.vue-test-utils.vuejs.org/api/#trigger) and [`setValue()`](https://next.vue-test-utils.vuejs.org/api/#setvalue) are helpers to simulate user input.
 - Updating the DOM is an async operation, so make sure to use `async` and `await`.
 - Testing usually consists of 3 phases; arrange, act and assert.
 
-**Conditional Rendering**
+**[Conditional Rendering](https://next.vue-test-utils.vuejs.org/guide/essentials/conditional-rendering.html)**
 
 - Use `find()` along with `exists()` to verify whether an element is in the DOM.
 - Use `get()` if you expect the element to be in the DOM.
 - The `data` mounting option can be used to set default values on a component.
 - Use `get()` with `isVisible()` to verify the visibility of an element that is in the DOM
 
-**Event Handling**
+**[Event Handling](https://next.vue-test-utils.vuejs.org/guide/essentials/event-handling.html)**
 
 - Use `emitted()` to access the events emitted from a Vue component.
 - `emitted(eventName)` returns an array, where each element represents one event emitted.
 - Arguments are stored in `emitted(eventName)[index]` in an array in the same order they are emitted.
 
-**Form Handling**
+**[Form Handling](https://next.vue-test-utils.vuejs.org/guide/essentials/forms.html)**
 
 - Use `setValue` to set the value on both DOM inputs and Vue components.
 - Use `trigger` to trigger DOM events, both with and without modifiers.
 - Add extra event data to `trigger` using the second parameter.
 - Assert that the DOM changed and the right events got emitted. Try not to assert data on the Component instance.
 
-**Passing Data to Components**
+**[Passing Data to Components](https://next.vue-test-utils.vuejs.org/guide/essentials/passing-data.html)**
 
 - Use the `props` and `data` mounting options to pre-set the state of a component.
 - Use `setProps()` to update a prop during a test.
 - Use the `await` keyword before `setProps()` to ensure the Vue will update the DOM before the test continues.
 - Directly interacting with your component can give you greater coverage. Consider using `setValue` or `trigger` in combination with data to ensure everything works correctly.
 
-**Write components that are easy to test**
+**[Write components that are easy to test](https://next.vue-test-utils.vuejs.org/guide/essentials/easy-to-test.html)**
 
 Following is a list of suggestions to write code that is easier to test, and to write tests that are meaningful and simple to maintain.
 
@@ -177,7 +177,7 @@ Write tests before writing the component
 
 You can't write untestable code if you write tests beforehand!
 
-**Slots**
+**[Slots](https://next.vue-test-utils.vuejs.org/guide/advanced/slots.html)**
 
 - Use the `slots` mounting option to test components using `<slot>` are rendering content correctly.
 - Content can either be a string, a render function or an imported SFC.
@@ -185,11 +185,6 @@ You can't write untestable code if you write tests beforehand!
 - scoped slots and the `#` shorthand is also supported.
 
 **[Asynchronous Behavior](https://next.vue-test-utils.vuejs.org/guide/advanced/async-suspense.html)**
-
-**<a href="http://example.com/" target="_blank">Asynchronous Behavior</a>**
-
-
-
 
 - Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
 - Use `await nextTick()` to ensure the DOM has updated before the test continues.
