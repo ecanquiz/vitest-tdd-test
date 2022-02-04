@@ -1,10 +1,45 @@
-# Vue 3 + Vite + Vitets + Vtu + Vtl
+# Vite + Vitets + Vtu + Vtl
 
 <img src="https://vitejs.dev/logo.svg" width="100" height="100"/><img src="https://vitest.dev/logo.svg" width="100" height="100"/><img src="https://vuejs.org/images/logo.svg" width="100" height="100"/><img src="https://testing-library.com/img/logo-large.png" width="100" height="100"/>
 
-# Vitest-Tdd-Test
+# How to do TDD with Vue 3
 
-In command line:
+Test Driven Development (TDD), is a software engineering technique, which directs the development of a product through writing tests, generally unit tests.
+
+TDD was developed by Kent Beck in the late 1990s and is part of the XP (extreme programming) methodology. Its author and the followers of the TDD assure that with this technique a code that is more tolerant to change, robust, secure, cheaper to maintain and, even, once you get used to applying it, promises greater speed when developing.
+
+**The three laws of TDD**
+
+1. You will not write production code without first writing a test that fails.
+2. You will not write more than one unit test enough to fail (and not compiling is failing).
+3. You will not write more code than necessary to pass the test.
+
+These three laws lead to the repetition of what is known as the Red-Green-Refactor cycle. Let's see what it consists of:
+
+**The Red-Green-Refactor cycle**
+
+The Red-Green-Refactor cycle, also known as the TDD algorithm, is based on:
+
+1. Red: Write a test that fails, that is, we have to perform the test before writing the implementation. Normally unit tests are used, although in some contexts it may make sense to do TDD with integration tests.
+2. Green: Once the test that fails is created, we will implement the minimum code necessary for the test to pass.
+3. Refactor: Finally, after getting our code to pass the test, we need to examine it to see if there are any improvements we can make.
+- Once we have closed the loop, we start again with the next requirement.
+
+This way of programming offers two main benefits. The first and most obvious is that we get code with good test coverage, which is positive up to a point. Remember, we get paid to write code that works, not to test.
+
+The second benefit is that writing the tests first helps us design the API that our component is going to have, as it forces us to think about how we want to use it. This often ends up leading to components with well-defined responsibilities and low coupling.
+
+**TDD limitations**
+
+No matter how many inherent benefits it has (or are promised), the TDD technique should not be understood as a religion or a magic formula that works for everything. Following TDD to the letter and in all contexts does not guarantee that your code will be more tolerant to change, robust or secure, nor does it even guarantee that you will be more productive when designing software.
+
+According to the point of view of some experts, applying TDD does not fit well in all contexts. For example, if there is an obvious implementation for a use case, I write it directly and then do the tests. In the case of working on the frontend, I don't consider doing TDD to design UI components either. It is even debatable whether unit tests should be done to test UI elements. Large developers have repeatedly commented that it is not convenient to do automated tests on these, since it is very changeable and the tests are outdated too often.
+
+The advice is that you try, try to apply it in your day to day for a while and then decide for yourself.
+
+# Proyect and the test enviroment
+
+To prepare your proyect and the test enviroment, execute folowing in command line:
 ```
 npm init vite@latest
 npm install -D vitest
@@ -12,7 +47,7 @@ npm install -D @vue/test-utils@next
 npm install -D @testing-library/vue@next
 ```
 
-vite.config.js
+Then update the `vite.config.js` file with the following:
 ```
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
@@ -53,6 +88,16 @@ When you're writing tests, you often need to check that values meet certain cond
 ## [Vue Test Utils](https://vue-test-utils.vuejs.org/)
 
 **A Crash Course**
+
+The test is split into three distinct stages, separated by new lines. The three stages represent the three phases of a test: **arrange**, **act** and **assert**.
+
+In the arrange phase, we are setting up the scenario for the test. A more complex example may require creating a Vuex store, or populating a database.
+
+In the act phase, we act out the scenario, simulating how a user would interact with the component or application.
+
+In the assert phase, we make assertions about how we expect the current state of the component to be.
+
+Almost all test will follow these three phases. You don't need to separate them with new lines like this guide does, but it is good to keep these three phases in mind as you write your tests.
 
 - Use `mount()` to render a component.
 - Use `get()` and `findAll()` to query the DOM.
@@ -138,5 +183,13 @@ You can't write untestable code if you write tests beforehand!
 - Content can either be a string, a render function or an imported SFC.
 - Use `default` for the default slot, and the correct name for a named slots.
 - scoped slots and the `#` shorthand is also supported.
+
+**Asynchronous Behavior**
+
+- Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
+- Use `await nextTick()` to ensure the DOM has updated before the test continues.
+- Functions that might update the DOM (like `trigger` and `setValue`) return `nextTick`, so you need to `await` them.
+- Use `flushPromises` from Vue Test Utils to resolve any unresolved promises from non-Vue dependencies (such as API requests).
+- Use `Suspense` to test components with an asynchronous `setup`.
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
