@@ -186,6 +186,11 @@ You can't write untestable code if you write tests beforehand!
 
 **[Asynchronous Behavior](https://next.vue-test-utils.vuejs.org/guide/advanced/async-suspense.html)**
 
+**<a href="http://example.com/" target="_blank">Asynchronous Behavior</a>**
+
+
+
+
 - Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
 - Use `await nextTick()` to ensure the DOM has updated before the test continues.
 - Functions that might update the DOM (like `trigger` and `setValue`) return `nextTick`, so you need to `await` them.
