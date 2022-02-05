@@ -189,7 +189,15 @@ You can't write untestable code if you write tests beforehand!
 - Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
 - Use `await nextTick()` to ensure the DOM has updated before the test continues.
 - Functions that might update the DOM (like `trigger` and `setValue`) return `nextTick`, so you need to `await` them.
-- Use `flushPromises` from Vue Test Utils to resolve any unresolved promises from non-Vue dependencies (such as API requests).
+- Use [`flushPromises`](https://next.vue-test-utils.vuejs.org/api/#flushpromises) from Vue Test Utils to resolve any unresolved promises from non-Vue dependencies (such as API requests).
 - Use `Suspense` to test components with an asynchronous `setup`.
+
+**[Making HTTP requests](https://next.vue-test-utils.vuejs.org/guide/advanced/http-requests.html)**
+
+- Vue Test Utils does not require special tools to test HTTP requests. The only thing to take into account is that we're testing asynchronous behavior.
+- Tests must not depend on external services. Use mocking tools such as [vi.fn](https://vitest.dev/api/#vi-fn) to avoid it.
+- [`flushPromises()`](https://next.vue-test-utils.vuejs.org/api/#flushpromises) is a useful tool to make sure the DOM updates after an async operation.
+- Directly triggering HTTP requests by interacting with the component makes your test more resilient.
+- A typical scenario for more complex applications is to trigger a Vuex action that performs the HTTP request.This is no different from the example outlined above.
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
