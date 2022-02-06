@@ -200,4 +200,8 @@ You can't write untestable code if you write tests beforehand!
 - Directly triggering HTTP requests by interacting with the component makes your test more resilient.
 - A typical scenario for more complex applications is to trigger a Vuex action that performs the HTTP request.This is no different from the example outlined above.
 
+**[Transitions](https://next.vue-test-utils.vuejs.org/guide/advanced/transitions.html)**
+
+- Since Vue Test Utils stubs built-in transitions, you can test the component with transition as you'd test any other component.
+
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
