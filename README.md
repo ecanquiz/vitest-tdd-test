@@ -45,6 +45,7 @@ npm init vite@latest
 npm install -D vitest
 npm install -D @vue/test-utils@next
 npm install -D @testing-library/vue@next
+npm install vuex@next --save
 ```
 
 Then update the `vite.config.js` file with the following:
@@ -206,9 +207,16 @@ You can't write untestable code if you write tests beforehand!
 
 **[Component Instance](https://next.vue-test-utils.vuejs.org/guide/advanced/component-instance.html)**
 
-- use [`vm`](https://next.vue-test-utils.vuejs.org/api/#vm) to access the internal Vue instance.
+- Use [`vm`](https://next.vue-test-utils.vuejs.org/api/#vm) to access the internal Vue instance.
 - [`getComponent`](https://next.vue-test-utils.vuejs.org/api/#getcomponent) and [`findComponent`](https://next.vue-test-utils.vuejs.org/api/#findcomponent) return a Vue wrapper. Those Vue instances are also available via `vm`.
 
-Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) component, `vm` will not be available. That's because `<script setup>` components are [closed by default](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#exposing-components-public-interface). For these components, and in general, consider `avoiding` vm and asserting against the rendered markup. 
+Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) component, `vm` will not be available. That's because `<script setup>` components are [closed by default](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#exposing-components-public-interface). For these components, and in general, consider `avoiding` vm and asserting against the rendered markup.
+
+**[Testing Vuex](https://next.vue-test-utils.vuejs.org/guide/advanced/vuex.html)**
+
+- Use [`global.plugins`](https://next.vue-test-utils.vuejs.org/api/#global-plugins) to install [Vuex](https://next.vuex.vuejs.org/) as a plugin
+- Use [`global.mocks`](https://next.vue-test-utils.vuejs.org/api/#global-mocks) to mock a global object, such as Vuex, for advanced use cases
+- Consider testing complex Vuex mutations and actions in isolation
+- Wrap [`createStore`](https://next.vuex.vuejs.org/api/#createstore) with a function that takes an argument to set up specific test scenarios
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
