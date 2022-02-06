@@ -46,6 +46,7 @@ npm install -D vitest
 npm install -D @vue/test-utils@next
 npm install -D @testing-library/vue@next
 npm install vuex@next --save
+npm install vue-router@4
 ```
 
 Then update the `vite.config.js` file with the following:
@@ -217,6 +218,14 @@ Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-
 - Use [`global.plugins`](https://next.vue-test-utils.vuejs.org/api/#global-plugins) to install [Vuex](https://next.vuex.vuejs.org/) as a plugin
 - Use [`global.mocks`](https://next.vue-test-utils.vuejs.org/api/#global-mocks) to mock a global object, such as Vuex, for advanced use cases
 - Consider testing complex Vuex mutations and actions in isolation
-- Wrap [`createStore`](https://next.vuex.vuejs.org/api/#createstore) with a function that takes an argument to set up specific test scenarios
+- Wrap [`createStore`](https://next.vuex.vuejs.org/api/#createstore) with a function that takes an argument to set up specific test scenarios.
+
+**[Testing Vue Router](https://next.vue-test-utils.vuejs.org/guide/advanced/vue-router.html)**
+
+- You can use a real router instance in your tests.
+- There are some caveats, though: Vue Router 4 is asynchronous, and we need to take it into account when writing tests.
+- For more complex applications, consider mocking the router dependency and focus on testing the underlying logic.
+- Make use of your test runner's stubbing/mocking functionality where possible.
+- Use [`global.mocks`](https://next.vue-test-utils.vuejs.org/api/#global-mocks) to mock global dependencies, such as `this.$route` and `this.$router`.
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
