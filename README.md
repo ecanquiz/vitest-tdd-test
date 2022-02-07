@@ -228,4 +228,10 @@ Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-
 - Make use of your test runner's stubbing/mocking functionality where possible.
 - Use [`global.mocks`](https://test-utils.vuejs.org/api/#global-mocks) to mock global dependencies, such as `this.$route` and `this.$router`.
 
+**[Testing Teleport](https://test-utils.vuejs.org/guide/advanced/teleport.html)**
+
+- Create a teleport target with [`document.createElement`](https://developer.mozilla.org/es/docs/Web/API/Document/createElement).
+- The target element cannot be a part of the same component... It needs to be outside of `<div id="app">`.
+- Find teleported components using [`getComponent`](https://test-utils.vuejs.org/api/#getcomponent) or [`findComponent`](https://test-utils.vuejs.org/api/#findcomponent) which operate on the Virtual DOM level.
+
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
