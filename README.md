@@ -87,9 +87,9 @@ When you're writing tests, you often need to check that values meet certain cond
 - If a test is failing, one of the first things to check should be whether the test is failing when it's the only test that runs. To run only one test, temporarily change that `test` command to a [`test.only`](https://jestjs.io/docs/api#testonlyname-fn-timeout).
 - In the case where we do need to create a fake (or mocked) version of a function we can use [vi.fn()](https://vitest.dev/api/#vi-fn). We use [Tinyspy](https://github.com/Aslemammad/tinyspy) as a base for mocking functions, but we have our own wrapper to make it [object jest](https://jestjs.io/docs/jest-object) compatible. Both [`vi.fn()`](https://vitest.dev/api/#vi-fn) and [`vi.spyOn()`](https://vitest.dev/api/#vi-spyon) share the same methods, however only the return result of `vi.fn()` is callable.
 
-## [Vue Test Utils](https://vue-test-utils.vuejs.org/)
+## [Vue Test Utils](https://test-utils.vuejs.org/)
 
-**[A Crash Course](https://next.vue-test-utils.vuejs.org/guide/essentials/a-crash-course.html)**
+**[A Crash Course](https://test-utils.vuejs.org/guide/essentials/a-crash-course.html)**
 
 The test is split into three distinct stages, separated by new lines. The three stages represent the three phases of a test: **arrange**, **act** and **assert**.
 
@@ -101,40 +101,40 @@ In the assert phase, we make assertions about how we expect the current state of
 
 Almost all test will follow these three phases. You don't need to separate them with new lines like this guide does, but it is good to keep these three phases in mind as you write your tests.
 
-- Use [`mount()`](https://next.vue-test-utils.vuejs.org/api/#mount) to render a component.
-- Use [`get()`](https://next.vue-test-utils.vuejs.org/api/#get) and [`findAll()`](https://next.vue-test-utils.vuejs.org/api/#findall) to query the DOM.
-- [`trigger()`](https://next.vue-test-utils.vuejs.org/api/#trigger) and [`setValue()`](https://next.vue-test-utils.vuejs.org/api/#setvalue) are helpers to simulate user input.
+- Use [`mount()`](https://test-utils.vuejs.org/api/#mount) to render a component.
+- Use [`get()`](https://test-utils.vuejs.org/api/#get) and [`findAll()`](https://test-utils.vuejs.org/api/#findall) to query the DOM.
+- [`trigger()`](https://test-utils.vuejs.org/api/#trigger) and [`setValue()`](https://test-utils.vuejs.org/api/#setvalue) are helpers to simulate user input.
 - Updating the DOM is an async operation, so make sure to use `async` and `await`.
 - Testing usually consists of 3 phases; arrange, act and assert.
 
-**[Conditional Rendering](https://next.vue-test-utils.vuejs.org/guide/essentials/conditional-rendering.html)**
+**[Conditional Rendering](https://test-utils.vuejs.org/guide/essentials/conditional-rendering.html)**
 
 - Use `find()` along with `exists()` to verify whether an element is in the DOM.
 - Use `get()` if you expect the element to be in the DOM.
 - The `data` mounting option can be used to set default values on a component.
 - Use `get()` with `isVisible()` to verify the visibility of an element that is in the DOM
 
-**[Event Handling](https://next.vue-test-utils.vuejs.org/guide/essentials/event-handling.html)**
+**[Event Handling](https://test-utils.vuejs.org/guide/essentials/event-handling.html)**
 
 - Use `emitted()` to access the events emitted from a Vue component.
 - `emitted(eventName)` returns an array, where each element represents one event emitted.
 - Arguments are stored in `emitted(eventName)[index]` in an array in the same order they are emitted.
 
-**[Form Handling](https://next.vue-test-utils.vuejs.org/guide/essentials/forms.html)**
+**[Form Handling](https://test-utils.vuejs.org/guide/essentials/forms.html)**
 
 - Use `setValue` to set the value on both DOM inputs and Vue components.
 - Use `trigger` to trigger DOM events, both with and without modifiers.
 - Add extra event data to `trigger` using the second parameter.
 - Assert that the DOM changed and the right events got emitted. Try not to assert data on the Component instance.
 
-**[Passing Data to Components](https://next.vue-test-utils.vuejs.org/guide/essentials/passing-data.html)**
+**[Passing Data to Components](https://test-utils.vuejs.org/guide/essentials/passing-data.html)**
 
 - Use the `props` and `data` mounting options to pre-set the state of a component.
 - Use `setProps()` to update a prop during a test.
 - Use the `await` keyword before `setProps()` to ensure the Vue will update the DOM before the test continues.
 - Directly interacting with your component can give you greater coverage. Consider using `setValue` or `trigger` in combination with data to ensure everything works correctly.
 
-**[Write components that are easy to test](https://next.vue-test-utils.vuejs.org/guide/essentials/easy-to-test.html)**
+**[Write components that are easy to test](https://test-utils.vuejs.org/guide/essentials/easy-to-test.html)**
 
 Following is a list of suggestions to write code that is easier to test, and to write tests that are meaningful and simple to maintain.
 
@@ -179,53 +179,53 @@ Write tests before writing the component
 
 You can't write untestable code if you write tests beforehand!
 
-**[Slots](https://next.vue-test-utils.vuejs.org/guide/advanced/slots.html)**
+**[Slots](https://test-utils.vuejs.org/guide/advanced/slots.html)**
 
 - Use the `slots` mounting option to test components using `<slot>` are rendering content correctly.
 - Content can either be a string, a render function or an imported SFC.
 - Use `default` for the default slot, and the correct name for a named slots.
 - scoped slots and the `#` shorthand is also supported.
 
-**[Asynchronous Behavior](https://next.vue-test-utils.vuejs.org/guide/advanced/async-suspense.html)**
+**[Asynchronous Behavior](https://test-utils.vuejs.org/guide/advanced/async-suspense.html)**
 
 - Vue updates the DOM asynchronously; tests runner executes code synchronously instead.
 - Use `await nextTick()` to ensure the DOM has updated before the test continues.
 - Functions that might update the DOM (like `trigger` and `setValue`) return `nextTick`, so you need to `await` them.
-- Use [`flushPromises`](https://next.vue-test-utils.vuejs.org/api/#flushpromises) from Vue Test Utils to resolve any unresolved promises from non-Vue dependencies (such as API requests).
+- Use [`flushPromises`](https://test-utils.vuejs.org/api/#flushpromises) from Vue Test Utils to resolve any unresolved promises from non-Vue dependencies (such as API requests).
 - Use `Suspense` to test components with an asynchronous `setup`.
 
-**[Making HTTP requests](https://next.vue-test-utils.vuejs.org/guide/advanced/http-requests.html)**
+**[Making HTTP requests](https://test-utils.vuejs.org/guide/advanced/http-requests.html)**
 
 - Vue Test Utils does not require special tools to test HTTP requests. The only thing to take into account is that we're testing asynchronous behavior.
 - Tests must not depend on external services. Use mocking tools such as [vi.fn](https://vitest.dev/api/#vi-fn) to avoid it.
-- [`flushPromises()`](https://next.vue-test-utils.vuejs.org/api/#flushpromises) is a useful tool to make sure the DOM updates after an async operation.
+- [`flushPromises()`](https://test-utils.vuejs.org/api/#flushpromises) is a useful tool to make sure the DOM updates after an async operation.
 - Directly triggering HTTP requests by interacting with the component makes your test more resilient.
 - A typical scenario for more complex applications is to trigger a Vuex action that performs the HTTP request.This is no different from the example outlined above.
 
-**[Transitions](https://next.vue-test-utils.vuejs.org/guide/advanced/transitions.html)**
+**[Transitions](https://test-utils.vuejs.org/guide/advanced/transitions.html)**
 
 - Since Vue Test Utils stubs built-in transitions, you can test the component with transition as you'd test any other component.
 
-**[Component Instance](https://next.vue-test-utils.vuejs.org/guide/advanced/component-instance.html)**
+**[Component Instance](https://test-utils.vuejs.org/guide/advanced/component-instance.html)**
 
-- Use [`vm`](https://next.vue-test-utils.vuejs.org/api/#vm) to access the internal Vue instance.
-- [`getComponent`](https://next.vue-test-utils.vuejs.org/api/#getcomponent) and [`findComponent`](https://next.vue-test-utils.vuejs.org/api/#findcomponent) return a Vue wrapper. Those Vue instances are also available via `vm`.
+- Use [`vm`](https://test-utils.vuejs.org/api/#vm) to access the internal Vue instance.
+- [`getComponent`](https://test-utils.vuejs.org/api/#getcomponent) and [`findComponent`](https://test-utils.vuejs.org/api/#findcomponent) return a Vue wrapper. Those Vue instances are also available via `vm`.
 
 Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) component, `vm` will not be available. That's because `<script setup>` components are [closed by default](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#exposing-components-public-interface). For these components, and in general, consider `avoiding` vm and asserting against the rendered markup.
 
-**[Testing Vuex](https://next.vue-test-utils.vuejs.org/guide/advanced/vuex.html)**
+**[Testing Vuex](https://test-utils.vuejs.org/guide/advanced/vuex.html)**
 
-- Use [`global.plugins`](https://next.vue-test-utils.vuejs.org/api/#global-plugins) to install [Vuex](https://next.vuex.vuejs.org/) as a plugin
-- Use [`global.mocks`](https://next.vue-test-utils.vuejs.org/api/#global-mocks) to mock a global object, such as Vuex, for advanced use cases
+- Use [`global.plugins`](https://test-utils.vuejs.org/api/#global-plugins) to install [Vuex 4](https://vuex.vuejs.org/) as a plugin
+- Use [`global.mocks`](https://test-utils.vuejs.org/api/#global-mocks) to mock a global object, such as Vuex, for advanced use cases
 - Consider testing complex Vuex mutations and actions in isolation
-- Wrap [`createStore`](https://next.vuex.vuejs.org/api/#createstore) with a function that takes an argument to set up specific test scenarios.
+- Wrap [`createStore`](https://vuex.vuejs.org/api/#createstore) with a function that takes an argument to set up specific test scenarios.
 
-**[Testing Vue Router](https://next.vue-test-utils.vuejs.org/guide/advanced/vue-router.html)**
+**[Testing Vue Router](https://test-utils.vuejs.org/guide/advanced/vue-router.html)**
 
 - You can use a real router instance in your tests.
-- There are some caveats, though: Vue Router 4 is asynchronous, and we need to take it into account when writing tests.
+- There are some caveats, though: [Vue Router 4](https://router.vuejs.org/) is asynchronous, and we need to take it into account when writing tests.
 - For more complex applications, consider mocking the router dependency and focus on testing the underlying logic.
 - Make use of your test runner's stubbing/mocking functionality where possible.
-- Use [`global.mocks`](https://next.vue-test-utils.vuejs.org/api/#global-mocks) to mock global dependencies, such as `this.$route` and `this.$router`.
+- Use [`global.mocks`](https://test-utils.vuejs.org/api/#global-mocks) to mock global dependencies, such as `this.$route` and `this.$router`.
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
