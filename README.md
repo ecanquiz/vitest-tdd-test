@@ -1,6 +1,6 @@
 # Vite + Vitets + Vtu + Vtl
 
-<img src="https://vitejs.dev/logo.svg" width="100" height="100"/><img src="https://vitest.dev/logo.svg" width="100" height="100"/><img src="https://test-utils.vuejs.org/" width="100" height="100"/><img src="https://testing-library.com/img/logo-large.png" width="100" height="100"/>
+<img src="https://vitejs.dev/logo.svg" width="100" height="100"/><img src="https://vitest.dev/logo.svg" width="100" height="100"/><img src="https://test-utils.vuejs.org/logo.png" width="100" height="100"/><img src="https://testing-library.com/img/logo-large.png" width="100" height="100"/>
 
 # How to do TDD with Vue 3
 
