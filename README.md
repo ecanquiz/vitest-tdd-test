@@ -1,6 +1,6 @@
 # Vite + Vitets + Vtu + Vtl
 
-<img src="https://vitejs.dev/logo.svg" width="100" height="100"/><img src="https://vitest.dev/logo.svg" width="100" height="100"/><img src="https://vuejs.org/images/logo.svg" width="100" height="100"/><img src="https://testing-library.com/img/logo-large.png" width="100" height="100"/>
+<img src="https://vitejs.dev/logo.svg" width="100" height="100"/><img src="https://vitest.dev/logo.svg" width="100" height="100"/><img src="https://test-utils.vuejs.org/" width="100" height="100"/><img src="https://testing-library.com/img/logo-large.png" width="100" height="100"/>
 
 # How to do TDD with Vue 3
 
@@ -233,5 +233,10 @@ Note: if you are using a [`<script setup>`](https://v3.vuejs.org/api/sfc-script-
 - Create a teleport target with [`document.createElement`](https://developer.mozilla.org/es/docs/Web/API/Document/createElement).
 - The target element cannot be a part of the same component... It needs to be outside of `<div id="app">`.
 - Find teleported components using [`getComponent`](https://test-utils.vuejs.org/api/#getcomponent) or [`findComponent`](https://test-utils.vuejs.org/api/#findcomponent) which operate on the Virtual DOM level.
+
+**[Stubs and Shallow Mount](https://test-utils.vuejs.org/guide/advanced/stubs-shallow-mount.html)**
+- Use [`global.stubs`](https://test-utils.vuejs.org/api/#global-stubs) to replace a component with a dummy one to simplify your tests
+- Use [`shallow: true`](https://test-utils.vuejs.org/api/#shallow) (or [`shallowMount`](https://test-utils.vuejs.org/api/#shallowmount)) to stub out all child components
+- Use [`config.renderStubDefaultSlot`](https://test-utils.vuejs.org/api/#global-renderstubdefaultslot) to render the default [`<slot>`](https://vuejs.org/guide/components/slots.html) for a stubbed component
 
 ## [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/)
