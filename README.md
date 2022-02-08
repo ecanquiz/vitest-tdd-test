@@ -42,11 +42,12 @@ The advice is that you try, try to apply it in your day to day for a while and t
 To prepare your proyect and the test enviroment, execute folowing in command line:
 ```
 npm init vite@latest
-npm install -D vitest
-npm install -D @vue/test-utils@next
-npm install -D @testing-library/vue@next
-npm install vuex@next --save
-npm install vue-router@4
+npm i -D vitest
+npm i -D @vue/test-utils@next
+npm i -D @testing-library/vue@next
+npm i -D @testing-library/jest-dom
+npm i vuex@next --save
+npm i vue-router@4
 ```
 
 Then update the `vite.config.js` file with the following:
