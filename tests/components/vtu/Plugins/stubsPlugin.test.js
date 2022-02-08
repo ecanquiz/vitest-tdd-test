@@ -1,9 +1,7 @@
 import { mount, config } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 
-const ChildComponent = { template:"<span />"}
-
-const Component = {template:"<div><slot /></div>" }
+const Component = {template:"<div><ChildComponent /></div>" }
 
 config.plugins.createStubs = ({ name, component }) => {
   return defineComponent({
@@ -11,22 +9,14 @@ config.plugins.createStubs = ({ name, component }) => {
   })
 }
 
-test('stubs plugin', () => {
-  //const wrapper = shallowMount(Component)
+test.skip('stubs plugin', () => {  
   const wrapper = mount(Component, {
     global: {
       stubs: {
         ChildComponent: { template: '<child-stub/>' }
       },
     },
-    /*slots: {
-      default: [
-        ChildComponent        
-      ]
-    }*/
   })
   
-     console.log( wrapper.html())
-  //expect(dataTestId.html()).toBe(`<input data-testid="name-input">`)
-  
+  console.log( wrapper.html())    
 })
